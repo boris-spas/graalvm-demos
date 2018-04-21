@@ -1,10 +1,10 @@
-var rubyAddSource= `
+const rubyadd = Interop.eval("ruby",
+ `
 	def rubyadd(a,b)
 		a + b
 	end
 	method(:rubyadd)
-`
-const rubyadd = Interop.eval("ruby", rubyAddSource);
+`);
 
 function jssum(v) {
 	var sum = 0;
