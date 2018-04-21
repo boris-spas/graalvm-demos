@@ -23,6 +23,7 @@ const express = require('express')();
 
 express.get('/', (req, res) => {
 	console.log("HIT!");
+
     var start = Date.now();
 	const sum = applyToRandomDoubles(jssum);
     const bigNumber = BigDecimal.valueOf(sum).pow(100);
@@ -41,7 +42,9 @@ express.get('/', (req, res) => {
     response += "<h2>This was done FAST because I ran on GraalVM!</h2>";
     response += "<p>I did this in " + time + "ms. </p>";
 
-    response += "<h2> Find out more on <a href='www.graalvm.org'>www.graalvm.org<\a></h2>"
+    response += "<h2> Find out more on <a href='http://www.graalvm.org'>www.graalvm.org<\a></h2>"
+
+    response += "<h2> See my source code <a href='https://github.com/boris-spas/graalvm-demos/blob/extended/polyglot-javascript-java-r-ruby/server.js'>here<\a></h2>"
 
 
 	res.send(response);
