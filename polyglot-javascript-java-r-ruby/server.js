@@ -9,12 +9,12 @@ const rubyadd = Interop.eval("ruby", rubyAddSource);
 function jssum(v) {
 	var sum = 0;
 	for (var i = 0; i < v.length; i++) {
-		sum = rubyadd(sum, v[i]); //rubyadd(sum, v[i]);
+		sum = rubyadd(sum, v[i]);
 	}
 	return sum;
 }
 
-const rfunc = Interop.eval("R", "function (mysum) { mysum(runif(1e8))}")
+const applyToRandomDoubles = Interop.eval("R", "function(f) { f(runif(1e8))}")
 
 const BigDecimal = Java.type('java.math.BigDecimal')
 
@@ -24,7 +24,7 @@ const express = require('express')();
 express.get('/', (req, res) => {
 	console.log("HIT!");
     var start = Date.now();
-	const sum = rfunc(jssum);
+	const sum = applyToRandomDoubles(jssum);
     const bigNumber = BigDecimal.valueOf(sum).pow(100);
     var time = Date.now() - start;
 
