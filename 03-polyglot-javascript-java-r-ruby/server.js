@@ -1,17 +1,17 @@
 const rubyadd = Interop.eval("ruby",
  `
-	def rubyadd(a,b)
-		a + b
-	end
-	method(:rubyadd)
+    def rubyadd(a,b)
+        a + b
+    end
+    method(:rubyadd)
 `);
 
 function jssum(v) {
-	var sum = 0;
-	for (var i = 0; i < v.length; i++) {
-		sum = rubyadd(sum, v[i]);
-	}
-	return sum;
+    var sum = 0;
+    for (var i = 0; i < v.length; i++) {
+        sum = rubyadd(sum, v[i]);
+    }
+    return sum;
 }
 
 const applyToRandomDoubles = Interop.eval("R", "function(f) { f(runif(1e8))}")
@@ -22,14 +22,14 @@ const BigDecimal = Java.type('java.math.BigDecimal')
 const express = require('express')();
 
 express.get('/', (req, res) => {
-	console.log("HIT!");
+    console.log("HIT!");
 
     var start = Date.now();
-	const sum = applyToRandomDoubles(jssum);
+    const sum = applyToRandomDoubles(jssum);
     const bigNumber = BigDecimal.valueOf(sum).pow(100);
     var time = Date.now() - start;
 
-	var response = "<h1>POLYGLOT DEMO!</h1>";
+    var response = "<h1>POLYGLOT DEMO!</h1>";
     response += "<h2>I generated 100 000 000 random double values!</h2>";
     response += "<p>Using the convinient <a href='https://www.rdocumentation.org/packages/compositions/versions/1.40-1/topics/runif'>runif</a> function from R.</p>";
 
@@ -47,8 +47,8 @@ express.get('/', (req, res) => {
     response += "<h2> See my source code <a href='https://github.com/boris-spas/graalvm-demos/blob/extended/polyglot-javascript-java-r-ruby/server.js'>here<\a></h2>"
 
 
-	res.send(response);
+    res.send(response);
 });
 express.listen(3000, () => {
-	console.log('Server up on port 3000');
+    console.log('Server up on port 3000');
 });
