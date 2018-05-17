@@ -2,4 +2,4 @@
 set -ex
 
 $GRAALVM_HOME/bin/npm install
-gcc -O3 random_sum.c -o random_sum
+gcc -O3 random_sum.c -lm -o random_sum

@@ -1,5 +1,7 @@
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define SIZE 100000000
 
@@ -21,6 +23,7 @@ int main(int argc, char *argv[])
     }
 
     // raise to the power of 100? HOW!??!
+    sum = pow(sum, 100.0);
 
     // Print result
     printf("%lf", sum);
