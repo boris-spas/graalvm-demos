@@ -1,4 +1,4 @@
-const rubyadd = Interop.eval("ruby",
+const rubyadd = Polyglot.eval("ruby",
  `
     def rubyadd(a,b)
         a + b
@@ -14,7 +14,7 @@ function jssum(v) {
     return sum;
 }
 
-const applyToRandomDoubles = Interop.eval("R", "function(f) { f(runif(1e8))}")
+const applyToRandomDoubles = Polyglot.eval("R", "function(f) { f(runif(1e8))}")
 
 const BigDecimal = Java.type('java.math.BigDecimal')
 
