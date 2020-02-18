@@ -14,7 +14,10 @@ function jssum(v) {
     return sum;
 }
 
-const applyToRandomDoubles = Polyglot.eval("R", "function(f) { f(runif(1e8))}")
+const applyToRandomDoubles = Polyglot.eval("R",
+`
+    function(f) { f(runif(1e8))}
+`)
 
 const BigDecimal = Java.type('java.math.BigDecimal')
 
