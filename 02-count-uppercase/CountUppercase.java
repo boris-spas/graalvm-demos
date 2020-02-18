@@ -9,7 +9,7 @@ public class CountUppercase {
 				System.out.println("-- iteration " + (iter + 1) + " --");
 			}
 
-            long total = 0; 
+            long total = 0;
 			final long start = System.currentTimeMillis();
 			long last = start;
 
