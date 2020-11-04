@@ -49,19 +49,22 @@ import java.util.stream.Stream;
 
 public class ExtListDir {
 	public static void main(String[] args) throws java.io.IOException {
-		final Context context = Context.create("js");
-		String s = "name + ': ' + size";
-		if (args.length == 1) {
-			s = args[0];
-		}
-		final Value lambda = context.eval("js",
-			"function lambda(name, size) { return " + s + "}; lambda;");
 		try (Stream<Path> paths = Files.walk(Paths.get("."))) {
 			paths.filter(Files::isRegularFile).forEach((Path p) -> {
 				File f = p.toFile();
-				Value v = lambda.execute(f.getName(), f.length());
-				System.out.println(v);
+				Object o = format(f.getName(), f.length(), args.length > 0 ? args[0] : null);
+				System.out.println(o);
 			});
 		}
 	}
+
+    static Object format(String name, long len, String code) {
+        if (code == null) {
+            return "" + name + ":" + len;
+        }
+		final Context context = Context.create("js");
+		final Value lambda = context.eval("js",
+			"function lambda(name, size) { return " + code + "}; lambda;");
+        return lambda.execute(name, len);
+    }
 }

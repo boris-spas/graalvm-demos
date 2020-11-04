@@ -47,24 +47,16 @@ import java.util.stream.Stream;
 
 public class ListDir {
 	public static void main(String[] args) throws java.io.IOException {
-
-		String root = ".";
-		if(args.length > 0) {
-			root = args[0];
-		}
-		System.out.println("Walking path: " + Paths.get(root));
-
-		long[] size = {0};
-		long[] count = {0};
-
-		try (Stream<Path> paths = Files.walk(Paths.get(root))) {
+		try (Stream<Path> paths = Files.walk(Paths.get("."))) {
 			paths.filter(Files::isRegularFile).forEach((Path p) -> {
 				File f = p.toFile();
-				size[0] += f.length();
-				count[0] += 1;
+				Object o = format(f.getName(), f.length());
+				System.out.println(o);
 			});
 		}
-		
-		System.out.println("Total: " + count[0] + " files, total size = " + size[0] + " bytes");
 	}
+
+    static String format(String name, long len) {
+        return "" + name + ":" + len;
+    }
 }
